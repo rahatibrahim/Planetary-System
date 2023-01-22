@@ -1,3 +1,4 @@
+PShape orbitalLine;
 Star[] stars;
 float earthX;
 float earthY;
@@ -12,22 +13,30 @@ void setup() {
     
     // Generating stars for the background
     stars = generateStars(50);
+
+    // Creating the orbit line
+    orbitalLine = createShape();
+    orbitalLine.beginShape();
+    orbitalLine.noFill();
+    orbitalLine.stroke(255, 255, 255);
+    orbitalLine.strokeWeight(2);
+    orbitalLine.endShape();
 }
 
 void draw() {
     clear();
-
+    
     for (int i = 0; i < stars.length; i++) {
         fill(stars[i].colorVar);
         ellipse(stars[i].x, stars[i].y, stars[i].diameter, stars[i].diameter);
     }
     
-    // Print the angle value
-    fill(255);
-    textSize(25);
-    text("Angle: " + angle, width - 180, 20);
-    text("cos: " + cos(angle), width - 180, 45);
-    text("sin: " + sin(angle), width - 180, 70);
+    // Print the value
+    // fill(255);
+    // textSize(25);
+    // text("Angle: " + angle, width - 180, 20);
+    // text("cos: " + cos(angle), width - 180, 45);
+    // text("sin: " + sin(angle), width - 180, 70);
     
     translate(width / 2, height / 2);
     
@@ -36,8 +45,12 @@ void draw() {
     ellipse(0, 0, 50, 50);
     
     // Calculate the Earth's orbit
-    earthX = 300 * cos(angle);
-    earthY = 300 * sin(angle);
+    earthX = 350 * cos(angle);
+    earthY = 350 * sin(angle);
+
+    // Draw the orbital line
+    orbitalLine.vertex(earthX, earthY);
+    shape(orbitalLine);
     
     // Draw the Earth
     fill(0, 0, 255);
@@ -60,6 +73,7 @@ void keyPressed() {
 
 Star[] generateStars(int starAmount) {
     Star[] stars = new Star[starAmount];
+    
     for (int i = 0; i < starAmount; i++) {
         float x = random(width);
         float y = random(height);
@@ -67,6 +81,6 @@ Star[] generateStars(int starAmount) {
         color colorVar = color(255, 255, 255);
         stars[i] = new Star(x, y, diameter, colorVar);
     }
-
+    
     return stars;
 }
