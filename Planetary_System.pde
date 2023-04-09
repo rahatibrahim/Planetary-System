@@ -32,11 +32,11 @@ void draw() {
     }
     
     // Print the value
-    // fill(255);
-    // textSize(25);
-    // text("Angle: " + angle, width - 180, 20);
-    // text("cos: " + cos(angle), width - 180, 45);
-    // text("sin: " + sin(angle), width - 180, 70);
+    fill(255);
+    textSize(25);
+    text("Angle: " + angle, width - 180, 20);
+    text("cos: " + cos(angle), width - 180, 45);
+    text("sin: " + sin(angle), width - 180, 70);
     
     translate(width / 2, height / 2);
     
@@ -46,12 +46,12 @@ void draw() {
     
     // Calculate the Earth's orbit
     earthX = 350 * cos(angle);
-    earthY = 350 * sin(angle);
+    earthY = 300 * sin(angle);
 
     // Draw the orbital line
     orbitalLine.vertex(earthX, earthY);
     shape(orbitalLine);
-    
+
     // Draw the Earth
     fill(0, 0, 255);
     ellipse(earthX, earthY, 20, 20);
